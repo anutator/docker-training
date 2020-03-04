@@ -9,41 +9,41 @@
 
 My Docker course with code examples.
 
-## About Course
+## О курсе
 
-- [Docker Training in Czech Republic](https://ondrej-sika.cz/skoleni/docker?_s=gh-dte)
-- [Docker Training in Europe](https://ondrej-sika.com/training/docker?_s=gh-dte)
+- [Docker Training в Чехии](https://ondrej-sika.cz/skoleni/docker?_s=gh-dte)
+- [Docker Training в Европе](https://ondrej-sika.com/training/docker?_s=gh-dte)
 
-### Any Questions?
+### Есть вопросы?
 
-Write me mail to <ondrej@sika.io>
+Пишите автору на <ondrej@sika.io>
 
 
-### Related Repositories
+### Дополнительные репозитории, которые понядобятся для этого курса
 
 #### Traefik
 
 - https://github.com/ondrejsika/traefik-le
 - https://github.com/ondrejsika/traefik-ssl
 
-#### Related courses
+#### Дополнительные курсы
 
 - https://github.com/ondrejsika/kubernetes-training-examples
 - https://github.com/ondrejsika/bare-metal-kubernetes
 
 
-### Lecturer notes
+### Заметки по лекциям
 
-#### Download Images before course, prevent slow connections
+#### Скачайте образы перед курсом, чтобы предотвратить медленные соединения
 
 ```
 ./pull-images.sh
 ```
 
-If you want update list of used images in file `images.txt`, run `./save-image-list.sh` and remove locally built images.
+Если хотите обновить список используемых образов в файле `images.txt`, выполните `./save-image-list.sh` и удалите образы, которые были созданы локально.
 
 
-## Course
+## Курс
 
 ## About Me - Ondrej Sika
 
@@ -56,15 +56,13 @@ __Freelance DevOps Engineer, Consultant & Lecturer__
 
 ## Star, Create Issues, Fork, and Contribute
 
-Feel free to star this repository or fork it.
+Можно свободно делать форк репозитория и ставить оценки.
 
-If you found bug, create issue or pull request.
+Если нашли баг, создайте issue или pull request. Также предлагайте улучшения создавая issue.
 
-Also feel free to propose improvements by creating issues.
+## Чат
 
-## Live Chat
-
-For sharing links & "secrets".
+Делимся ссылками и "секретами".
 
 <https://tlk.io/sika-docker>
 
@@ -90,10 +88,10 @@ Containers are abstraction in linux kernel, just proces, memory, network, … na
 
 Containers run in same kernel as host - it is not possible use different OS or kernel version, but containers are much more faster than VMs.
 
-## Docker Advantages
+## Преимущества Docker
 
-- Performance
-- Management
+- Производительность
+- Управление
 - Application (image) distribution
 
 ## Docker Disadvantages
