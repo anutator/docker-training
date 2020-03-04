@@ -45,7 +45,7 @@ My Docker course with code examples.
 
 ## Курс
 
-## About Me - Ondrej Sika
+## Обо мне - Ondrej Sika
 
 __Freelance DevOps Engineer, Consultant & Lecturer__
 
@@ -74,7 +74,7 @@ Docker is an open-source project that automates the deployment of applications i
 Docker containers wrap up a piece of software in a complete filesystem that contains everything it needs to run: code, runtime, system tools, system libraries – anything you can install on a server.
 
 
-## Containers vs virtualization
+## Контейнеры или виртуализация
 
 ### Виртуализация
 
@@ -92,12 +92,12 @@ Containers run in same kernel as host - it is not possible use different OS or k
 
 - Производительность
 - Управление
-- Application (image) distribution
+- Распространение приложений (образов), например через Docker hub
 
 ## Недостатки Docker
 
-- Security
-- One kernel / "Linux only"
+- Безопасность
+- Одно ядро  Linux / "только Linux"
 
 ## Использование Docker
 
@@ -106,12 +106,12 @@ Containers run in same kernel as host - it is not possible use different OS or k
 - Better (easier, faster) deployment process
 - Separates running applications
 
-## Docker works with
+## Docker работает с
 
 - Kubernetes ([Kubernetes Training](https://github.com/ondrejsika/kubernetes-training))
 - Swarm
 
-## Docker Editions (CE / EE)
+## Варианты выпусков Docker (CE / EE)
 
 ### Docker Engine Community
 
@@ -132,16 +132,16 @@ Source: https://docs.docker.com/install/overview/
 
 [12factor.net](https://12factor.net)
 
-Set of 12 rules how to write modern applications.
+Набор 12 правил для написания современных приложений.
 
 
-## Install Docker
+## Установка Docker
 
-- Official installation - <https://docs.docker.com/engine/installation/>
-- My install instructions (in Czech) - <https://ondrej-sika.cz/docker/instalace/>
+- Официальное руководство по установке - <https://docs.docker.com/engine/installation/>
+- Инструкции на чешском языке - <https://ondrej-sika.cz/docker/instalace/>
 - Bash Completion on Mac - <https://blog.alexellis.io/docker-mac-bash-completion/>
 
-## Test the installation
+## Проверка корректной установки
 
 ```
 docker run hello-world
@@ -149,9 +149,9 @@ docker run hello-world
 
 ![](images/test-the-installation.png)
 
-### Remote Docker (over SSH)
+### Удаленое подключение к Docker (через SSH)
 
-You can use remote Docker using SSH. Just export varibale `DOCKER_HOST` with `ssh://root@docker.sikademo.com` and your local Docker clint will be executed on docker.sikademo.com server.
+Можно стандартными командами управлять удаленным Docker используя SSH. Экспортируйте переменную окружения `DOCKER_HOST` с `ssh://root@docker.sikademo.com` и ваш локальный Docker клиент будет выполняться на сервере docker.sikademo.com.
 
 ```
 export DOCKER_HOST=ssh://root@docker.sikademo.com
@@ -159,68 +159,68 @@ docker version
 docker info
 ```
 
-You can connect Docker using TCP socket, see chapter [Connect Shell to the Machine](#connect-shell-to-the-machine)
+Вы можете подключиться к Docker используя TCP сокет, смотри главу [Connect Shell to the Machine](#connect-shell-to-the-machine)
 
 
-## Basic Usage
+## Основное использование
 
-## Image and Container
+## Образ и контейнер
 
 An __image__ is an inert, immutable, file that's essentially a snapshot of a container. Images are created with the build command, and they'll produce a __container__ when started with run. Images are stored in a Docker registry.
 
 ## System Wide Info
 
-- `docker version` - print version
-- `docker info` - system wide information
-- `docker system df` - docker disk usage
-- `docker system prune` - cleanup unused data
+- `docker version` - отобразить версию докера
+- `docker info` - информация о системе
+- `docker system df` - использование диска докером
+- `docker system prune` - очистить неиспользуемые данные
 
 
-## Docker Images
+## Образы Docker
 
-- `docker pull <image>` - download an image
-- `docker image ls` - list all images
-- `docker image ls -q` - quiet output, just IDs
-- `docker image ls <image>` - list image versions
-- `docker image rm <image>` - remove image
-- `docker image history <image>` - show image history
-- `docker image inspect <image>` - show image properties
+- `docker pull <image>` - скачать образ
+- `docker image ls` - список всех образов
+- `docker image ls -q` - "тихий" вывод списка, показывает только номера ID
+- `docker image ls <image>` - отобразить версии образов
+- `docker image rm <image>` - удалить образ
+- `docker image history <image>` - показать историю образа
+- `docker image inspect <image>` - показать свойства образа
 
-## Docker Registry
+## Docker Registry (реестр)
 
-Docker image name also contains location of it source. Those names can be used:
+Имена образов Docker также содержат расположение их источника. Примеры имен:
 
-- `debian` - Official images on Docker Hub
-- `ondrejsika/debian` - User (custom) images on Docker Hub
-- `reg.istry.cz/debian` - Image in my own registry
+- `debian` - Официальные образы на Docker Hub
+- `ondrejsika/debian` - Пользовательские (кастомные) образы на Docker Hub
+- `reg.istry.cz/debian` - Образ в моем собственном реестре
 
-### Own Docker Registry
+### Собственный реестр Docker
 
-__Docker Registry__ is build in __Gitlab__ and __Github__ for no additional cost. You can find it in packages section.
+__Docker Registry__ is build на __Gitlab__ и __Github__ бесплатно. Вы его можете найти в разделе пакетов.
 
-You can run registry manually using this command:
+Вы можете выполнить реестр вручную командой:
 
 ```
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
 ```
 
-See full deployment configuration here: <https://docs.docker.com/registry/deploying/>
+Смотри полную конфигурацию разворачвания реестра здесь: <https://docs.docker.com/registry/deploying/>
 
 ### Registry Client - Reg
 
-I use [reg](https://github.com/genuinetools/reg) for CLI and Web client. Work only with open source registry, Docker Hub use different API.
+Я использую [reg](https://github.com/genuinetools/reg) для клииента командной строки CLI и Web клиента. Работает только с бесплатным реестром, Docker Hub использует другой API.
 
-#### Install Reg
+#### Установка Reg
 
-From their release page on Github: <https://github.com/genuinetools/reg/releases>
+Установить из релиза на Github: <https://github.com/genuinetools/reg/releases>
 
-#### CLI
+#### Командная строка CLI
 
 ```
 reg ls <registry>
 ```
 
-Example
+Пример
 
 ```
 reg ls reg.istry.cz
