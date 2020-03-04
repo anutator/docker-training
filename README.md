@@ -130,9 +130,7 @@ Source: https://docs.docker.com/install/overview/
 
 ## 12 Factor Apps
 
-[12factor.net](https://12factor.net)
-
-Набор 12 правил для написания современных приложений.
+[12factor.net](https://12factor.net)  Набор 12 правил для написания современных приложений.
 
 
 ## Установка Docker
@@ -232,80 +230,79 @@ reg ls reg.istry.cz
 reg server -r <registry>
 ```
 
-Example
+Пример
 
 ```
 reg server -r reg.istry.cz
 ```
 
-See <http://127.0.0.1:8080>
+Смотри <http://127.0.0.1:8080>
 
 
 ## Docker Run
 
 ```
-docker run [ARGS] <image> [<command>]
+docker run [аргументы] <image> [<command>]
 ```
 
-Examples
+Примеры
 
 ```
-# Basic Docker Run
+# Стандартный Docker Run
 docker run hello-world
 
-# With custom command
+# Запуск с пользовательскими командами
 docker run debian cat /etc/os-release
 docker run ubuntu cat /etc/os-release
 
-# With TTY & Standart Input
+# С TTY и стандартным вводом
 docker run -ti debian
 ```
 
-## Containers
+## Контейнеры
 
-- `docker ps` - list containers
+- `docker ps` - список контейнеров
 - `docker start <container>`
 - `docker stop <container>`
 - `docker restart <container>`
-- `docker rm <container>` - remove container
+- `docker rm <container>` - удалить контейнер
 
-## Common Docker Run Params
+## Основные параметры Docker Run
 
 - `--name <name>`
-- `--rm` - remove container after stop
-- `-d` - run in detached mode
-- `-ti` - map TTY a STDIN (for bash eg.)
-- `-e <variable>=<value>` - set ENV variable
-- `--env-file=<env_file>` - load all variables defined in ENV file
+- `--rm` - автоматически удалить контейнер после остановки
+- `-d` - выполнить в режиме detached (типа фонового режима)
+- `-ti` - map TTY a STDIN (для bash eg.)
+- `-e <variable>=<value>` - задать переменную окружения ENV
+- `--env-file=<env_file>` - загрузить все переменные окружения, заданные в файле ENV
 
-## Restart Policy
+## Политика перезапуска
 
-By default, if container process stop (or fail), container will be stopped.
+По умолчанию, если процесс контейнера остановится (или отвалится с ошибкой), контейнер будет остановлен.
 
-You can choose another behavion using argument `--restart <restart policy>`.
+Аргумент `--restart <restart policy>` позволит задать другое поведение:
 
-- `--restart on-failure` - restart only when container return non zero return code
-- `--restart always` - always, even on Docker daemon restart (server restart also)
-- `--restart unless-stopped` - similar to always, but keep stopped container stopped on Docker daemon restart (server restart also)
+- `--restart on-failure` - перезапустить только если контейнер вернет ненулевой код возврата
+- `--restart always` - всегда, даже при перезапуске демона Docker (также при перезапуске сервера)
+- `--restart unless-stopped` - аналог политики "всегда", но оставлять остановленный контейнер в том же состоянии при перезапуске демона Docker (также при перезапуске сервера)
 
-If you want to set maximum restart count for `on-failure` restart policy, you can use: `--restart on-failure:<count>`
+Если вы хотите задать максимальное число перезапусков для политики `on-failure`, введите: `--restart on-failure:<число>`
 
+## Список контейнеров
 
-## List Containers
+- `docker ps` - список запущенных контейнеров
+- `docker ps -a` - список всех контейнеров, в том числе остановленных
+- `docker ps -a -q` - список ID всех контейнеров ("тихий" режим)
 
-- `docker ps` - list running containers
-- `docker ps -a` - list all containers
-- `docker ps -a -q` - list IDs of all containers
-
-Example of `-q`
+Пример `-q`
 
 ```
 docker rm -f $(docker ps -a -q)
 ```
 
-or my `dra` (docker remove all) alias
+или пример Linux алиаса (сокращения команды) `dra` (docker remove all - докер удалить всё)
 ```
-alias dra='docker ps -a  -q | xargs docker rm -f'
+alias dra='docker ps -a -q | xargs docker rm -f'
 dra
 ```
 
@@ -315,14 +312,14 @@ dra
 docker exec <container> <command>
 ```
 
-Arguments
+Аргументы
 
 - `-d` - run in detached mode
 - `-e <variable>=<value>` - set ENV variable
 - `-ti` - map TTY a STDIN (for bash eg.)
 - `-u <user>` - run command by specific user
 
-Example
+Пример
 
 ```
 docker run --name pg11 -d postgres:11
@@ -332,17 +329,17 @@ docker run --name pg12 -e POSTGRES_PASSWORD=pg -d postgres:12
 docker exec -ti -u postgres pg12 psql
 ```
 
-## Docker Logs
+## Логи Docker
 
 ```
 docker logs [-f] <container>
 ```
 
-Args
+Аргументы
 
-- `-f` - following output (similar to `tail -f ...`)
+- `-f` - following output (аналог стандартной линуксовой команды `tail -f ...`)
 
-Examples
+Примеры
 
 ```
 docker run --name loop -d ondrejsika/infinite-counter
@@ -350,7 +347,7 @@ docker logs loop
 docker logs -f loop
 ```
 
-### Log Drivers
+### Драйверы для сбора логов
 
 You can use native Docker logging or some log drivers.
 
@@ -381,36 +378,36 @@ CLI
 - `docker volume rm <volume>` - remove volume
 - `docker volume prune` - remove all not used (not bount to container) volumes
 
-Examples
+Примеры
 
 - `docker run -ti -v /data debian`
 - `docker run -ti -v my-volume:/data debian`
 - `docker run -ti -v $(pwd)/my-data:/data debian`
 
-### Read only volumes
+### volumes «только чтение»
 
 If you want to mount your volumes __read only__, you have to add `:ro` to volume argument.
 
-Examples
+Примеры
 
 - `docker run -ti -v my-volume:/data:ro debian`
 - `docker run -ti -v $(pwd)/my-data:/data:ro debian`
 
 First example does't make sense read only.
 
-### Find Containers Which Use Specific Volume
+### Найти контейнеры, использующие определенный Volume
 
 ```
 docker ps -a --filter volume=<volume>
 ```
 
-Example
+Пример
 
 ```
 docker ps -a --filter volume=my-volume
 ```
 
-### Socket forwading
+### Переадресация сокетов
 
 If you want to forward socket into container, you can also use volume. If you work with sockets, read only parameter doesn't work.
 
@@ -424,7 +421,7 @@ or
 docker run -v /var/run/docker.sock:/var/run/docker.sock -ti docker
 ```
 
-### !! Possible Security Risk !!
+### !! Потенциальный риск безопасности !!
 
 __You can mount your's host rootfs to container with root privileges. Everybody ho has access to docker or docker socket has root privileges on your host.__
 
