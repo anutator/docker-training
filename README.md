@@ -67,7 +67,7 @@ __Freelance DevOps Engineer, Consultant & Lecturer__
 <https://tlk.io/sika-docker>
 
 
-## What is Docker?
+## Что такое Docker?
 
 Docker is an open-source project that automates the deployment of applications inside software containers ...
 
@@ -76,13 +76,13 @@ Docker containers wrap up a piece of software in a complete filesystem that cont
 
 ## Containers vs virtualization
 
-### Virtualization
+### Виртуализация
 
 A VM is an abstraction of physical hardware. Each VM has a full server hardware stack from virtualized BIOS to virtualized network adapters, storage, and CPU.
 
 That stack allows run any OS on your host but it takes some power.
 
-### Containers
+### Контейнеры
 
 Containers are abstraction in linux kernel, just proces, memory, network, … namespaces.
 
@@ -94,12 +94,12 @@ Containers run in same kernel as host - it is not possible use different OS or k
 - Управление
 - Application (image) distribution
 
-## Docker Disadvantages
+## Недостатки Docker
 
 - Security
 - One kernel / "Linux only"
 
-## Usage of Docker
+## Использование Docker
 
 - Almost everywhere
 - Development, Testing, Production
